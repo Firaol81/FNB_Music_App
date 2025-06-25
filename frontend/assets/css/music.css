@@ -1,0 +1,45 @@
+body {
+  background: #111;
+  color: white;
+  font-family: sans-serif;
+}
+
+.song-list {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.song-card {
+  background: #1c1c1c;
+  margin: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.song-card img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+}
+
+.song-info {
+  text-align: center;
+  margin-top: 10px;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.delete-btn {
+  background-color: #b00;
+  color: white;
+  margin-left: 10px;
+}

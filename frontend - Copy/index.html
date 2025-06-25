@@ -1,0 +1,209 @@
+<!-- Firebase v8 core + auth CDN -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<script src="js/auth/login-compat.js"></script>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font Awesome CDN link -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+
+
+
+
+
+    <link rel="stylesheet" href="assets/css/style.css"/>
+    <link rel="stylesheet" href="assets/css/music.css" />
+
+</head>
+
+ 
+  <body>
+     
+						   <!-- SOCIAL media
+						   
+						  <div class="social-links">
+						  <a href="https://www.youtube.com" target="_blank">
+							<img src="assets/images/youtube.png" alt="YouTube" class="social-icon">
+						  </a>
+						  <a href="https://www.facebook.com" target="_blank">
+							<img src="assets/images/facebook.png" alt="Facebook" class="social-icon">
+						  </a>
+						  <a href="https://www.tiktok.com" target="_blank">
+							<img src="assets/images/tiktok.png" alt="TikTok" class="social-icon">
+						  </a>
+						</div>
+            -->
+  
+    <div class="player">
+      <div class="wrapper">
+	 
+        <div class="details">
+        
+      <!-- Top-Left Auth Bar with Settings Dropdown -->
+            <!-- Auth Bar -->
+<div id="auth-bar">
+  <!-- Left side: Login button or Settings -->
+  <div id="auth-left">
+    <button id="google-login-btn" class="auth-button">
+      <img src="assets/logo/google-icon.png" alt="Google" style="height:20px; vertical-align:middle; margin-right:8px;">
+      Sign in with Google
+    </button>
+
+    <div id="settings-menu" class="dropdown" style="display: none;">
+      <button class="auth-button" id="settings-btn">⚙️ Settings ▾</button>
+      <div class="dropdown-content" id="settings-dropdown">
+        <a href="dashboard.html" id="dashboard-link">Dashboard</a>
+        <a href="#" id="account-info-link">Account Info</a>
+        <a href="#" id="logout-btn">Log Out</a>
+      </div>
+    </div>
+  </div>
+    <!-- Mobile verson-->
+
+    <!-- Only shows on mobile -->
+<!-- Mobile Hamburger Menu -->
+<!-- Hamburger Icon (Only visible on mobile) -->
+<!-- Hamburger Icon -->
+<!-- Hamburger Icon -->
+<div id="mobile-toggle">
+  <i class="fa fa-bars"></i>
+</div>
+
+<!-- Dropdown Menu -->
+<ul class="mobile-dropdown" id="mobile-dropdown">
+  <li><a href="dashboard.html">Dashboard</a></li>
+  <li><a href="account.html">Account Info</a></li>
+  <li><a href="#" id="logout-btn">Log Out</a></li>
+</ul>
+
+
+  <!-- Right side: User info -->
+  <div id="user-info" style="display: none;">
+    <img id="user-photo" src="" alt="User Photo" style="height: 32px; width: 32px; border-radius: 50%;">
+    <span id="user-name" style="font-weight: 500;"></span>
+  </div>
+</div>
+
+
+		
+		
+		   <!-- Logo -->
+		<div class="logo">
+         <img src="assets/logo/logo.png" alt="FNB Studio Logo" />
+        </div>
+		
+          <!-- Start Searching -->
+
+          <div class="search-container">
+            <input
+              type="text"
+              id="search-bar"
+              placeholder="Search for a song or artist..."
+              onkeyup="filterSongs()"
+            />
+            <ul id="search-results"></ul>
+          </div>
+          <!-- End Searching -->
+			
+        
+
+          <!-- Recent History Button -->
+          <div class="now-playing">PLAYING x OF y</div>
+          <div class="track-art"></div>
+          <div class="track-name">Track Name</div>
+          <div class="track-artist">Track Artist</div>
+        </div>
+		   <!-- Song Playlist Section -->
+<!-- Song Playlist Section Moved to Right -->
+<section id="song-list-section-wrapper">
+  <section id="song-list-section">
+    <h2 style="color: white; text-align: center;">🎶 All Songs</h2>
+    <ul id="song-list"></ul>
+  </section>
+</section>
+
+
+
+        <div class="slider_container">
+          <div class="current-time">00:00</div>
+          <input
+            type="range"
+            min="1"
+            max="100"
+            value="0"
+            class="seek_slider"
+            onchange="seekTo()"
+          />
+          <div class="total-duration">00:00</div>
+        </div>
+
+        <div class="slider_container">
+          <i class="fa fa-volume-down"></i>
+          <input
+            type="range"
+            min="1"
+            max="100"
+            value="99"
+            class="volume_slider"
+            onchange="setVolume()"
+          />
+          <i class="fa fa-volume-up"></i>
+        </div>
+
+        <div class="buttons">
+          <div class="random-track" onclick="randomTrack()">
+            <i class="fas fa-random fa-2x" title="random"></i>
+          </div>
+          <div class="prev-track" onclick="prevTrack()">
+            <i class="fa fa-step-backward fa-2x"></i>
+          </div>
+          <div class="playpause-track" id="playpause-btn">
+          <i class="fa fa-play-circle fa-5x"></i>
+          </div>
+
+          <div class="next-track" onclick="nextTrack()">
+            <i class="fa fa-step-forward fa-2x"></i>
+          </div>
+          <div class="repeat-track" onclick="repeatTrack()">
+            <i class="fa fa-repeat fa-2x" title="repeat"></i>
+          </div>
+        </div>
+        <div id="wave">
+		  <span class="stroke"></span>
+		  <span class="stroke"></span>
+		  <span class="stroke"></span>
+		  <span class="stroke"></span>
+		  <span class="stroke"></span>
+		  <span class="stroke"></span>
+		  <span class="stroke"></span>
+		</div>
+
+<script type="module" src="./js/main.js"></script>
+ <!--  This is a login button -->
+<script type="module" src="js/auth/login.js"></script>
+
+<script>
+  const mobileToggle = document.getElementById('mobile-toggle');
+  const mobileDropdown = document.getElementById('mobile-dropdown');
+
+  mobileToggle.addEventListener('click', () => {
+    mobileDropdown.classList.toggle('show');
+  });
+</script>
+
+
+
+
+
+
+  </body>
+</html>

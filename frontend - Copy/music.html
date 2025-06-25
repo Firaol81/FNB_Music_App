@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Music | FNB Studio</title>
+  <link rel="stylesheet" href="assets/css/music.css" />
+
+  <!-- Font Awesome for burger icon -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* Burger Icon */
+    #mobile-toggle {
+      display: none;
+      cursor: pointer;
+      font-size: 28px;
+      color: white;
+      padding: 10px;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      z-index: 999;
+    }
+
+    .mobile-dropdown {
+      display: none;
+      position: absolute;
+      top: 55px;
+      right: 15px;
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 10px 0;
+      list-style: none;
+      z-index: 999;
+    }
+
+    .mobile-dropdown li {
+      padding: 10px 20px;
+    }
+
+    .mobile-dropdown li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .mobile-dropdown li:hover {
+      background: #1db954;
+      cursor: pointer;
+    }
+
+    .mobile-dropdown.show {
+      display: block;
+    }
+
+    @media screen and (max-width: 768px) {
+      #mobile-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Burger Menu -->
+  <div id="mobile-toggle">
+    <i class="fa fa-bars"></i>
+  </div>
+
+  <ul class="mobile-dropdown" id="mobile-dropdown">
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="upload.html">Upload</a></li>
+    <li><a href="music.html">Music</a></li>
+    <li><a href="#" id="logout-btn">Log Out</a></li>
+  </ul>
+
+  <!-- ✅ Page Title -->
+  <h1 style="text-align: center; color: white;">🎵 All Songs</h1>
+  <div id="song-list" class="song-list"></div>
+
+  <!-- ✅ Load Songs Script -->
+  <script>
+    async function loadSongs() {
+      const res = await fetch("http://localhost:5000/songs");
+      const songs = await res.json();
+
+      const list = document.getElementById("song-list");
+      list.innerHTML = "";
+
+      songs.forEach(song => {
+        const div = document.createElement("div");
+        div.className = "song-card";
+        div.innerHTML = `
+          <img src="${song.cover || 'assets/images/default.jpg'}" alt="cover">
+          <div class="song-info">
+            <h3>${song.title}</h3>
+            <p>${song.artist}</p>
+          </div>
+        `;
+
+        div.addEventListener("click", () => {
+          const query = new URLSearchParams({
+            title: song.title,
+            artist: song.artist,
+            url: song.url,
+            cover: song.cover
+          }).toString();
+          window.location.href = `index.html?${query}`;
+        });
+
+        list.appendChild(div);
+      });
+    }
+
+    loadSongs();
+  </script>
+
+  <!-- ✅ Firebase Login Script -->
+  <script type="module" src="js/auth/login.js"></script>
+
+  <!-- ✅ Burger Menu Toggle Script -->
+  <script>
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileDropdown = document.getElementById('mobile-dropdown');
+
+    if (mobileToggle && mobileDropdown) {
+      mobileToggle.addEventListener('click', () => {
+        mobileDropdown.classList.toggle('show');
+      });
+    }
+  </script>
+
+</body>
+</html>

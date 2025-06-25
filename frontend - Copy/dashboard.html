@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FNB Dashboard</title>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+
+  <!-- Top Auth Bar -->
+  <div id="auth-bar">
+    <div id="auth-left">
+      <button id="google-login-btn" class="auth-button">
+        <img src="assets/logo/google-icon.png" alt="Google" style="height:20px; vertical-align:middle; margin-right:8px;">
+        Sign in with Google
+      </button>
+
+      <div id="settings-menu" class="dropdown" style="display: none;">
+        <button class="auth-button" id="settings-btn">⚙️ Settings ▾</button>
+        <div class="dropdown-content" id="settings-dropdown">
+          <a href="dashboard.html" id="dashboard-link">Dashboard</a>
+          <a href="#" id="account-info-link">Account Info</a>
+          <a href="#" id="logout-btn">Log Out</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="user-info" style="display: none;">
+      <img id="user-photo" src="" alt="User Photo" style="height: 32px; width: 32px; border-radius: 50%;">
+      <span id="user-name" style="font-weight: 500;"></span>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="nav-bar">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="upload.html">Upload</a></li>
+      <li><a href="index.html">Music</a></li>
+    </ul>
+  </nav>
+
+  <!-- Dashboard Section -->
+  <section class="dashboard">
+    <h1 style="color: white; text-align: center;">🎧 Dashboard</h1>
+    <p style="color: #ccc; text-align: center;">Click any song to play it in the app.</p>
+
+    <!-- Song List -->
+    <ul id="song-list" style="list-style: none; padding: 0; max-width: 600px; margin: auto;"></ul>
+  </section>
+
+  <!-- Scripts -->
+  <script type="module" src="js/auth/login.js"></script>
+  <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

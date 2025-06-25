@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FNB Studio | Player</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/images/favicon.ico" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="stylesheet" href="assets/css/music.css" />
+</head>
+
+<body>
+  <div class="player">
+    <div class="wrapper">
+      <div class="details">
+        <!-- Auth Bar -->
+        <div id="auth-bar">
+          <div id="auth-left">
+            <button id="google-login-btn" class="auth-button">
+              <img src="assets/logo/google-icon.png" alt="Google" style="height:20px; margin-right:8px;">
+              Sign in with Google
+            </button>
+
+            <div id="settings-menu" class="dropdown" style="display: none;">
+              <button class="auth-button" id="settings-btn">⚙️ Settings ▾</button>
+              <div class="dropdown-content" id="settings-dropdown">
+                <a href="dashboard.html">Dashboard</a>
+                <li><a id="my-songs-link" href="#">My Songs</a></li>
+
+                <a href="#">Account Info</a>
+                <a href="#" id="logout-btn">Log Out</a>
+              </div>
+            </div>
+          </div>
+
+          <div id="mobile-toggle"><i class="fa fa-bars"></i></div>
+
+          <ul class="mobile-dropdown" id="mobile-dropdown">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="account.html">Account Info</a></li>
+            <li><a href="#" id="logout-btn">Log Out</a></li>
+          </ul>
+
+          <div id="user-info" style="display: none;">
+            <img id="user-photo" src="" alt="User" style="height:32px; width:32px; border-radius:50%;">
+            <span id="user-name" style="font-weight: 500;"></span>
+          </div>
+        </div>
+
+        <!-- Logo -->
+        <div class="logo">
+          <img src="assets/logo/logo.png" alt="FNB Studio Logo" />
+        </div>
+
+        <!-- Search -->
+        <div class="search-container">
+          <input type="text" id="search-bar" placeholder="Search for a song or artist..." />
+          <ul id="search-results"></ul>
+        </div>
+
+        <!-- Now Playing Info -->
+        <div class="now-playing">PLAYING x OF y</div>
+        <div class="track-art"></div>
+        <div class="track-name">Track Name</div>
+        <div class="track-artist">Track Artist</div>
+      </div>
+
+      <!-- Song List -->
+      <section id="song-list-section-wrapper">
+        <section id="song-list-section">
+          <h2 style="color: white; text-align: center;">🎶 All Songs</h2>
+          <ul id="song-list"></ul>
+        </section>
+      </section>
+
+      <!-- Progress -->
+      <div class="slider_container">
+        <div class="current-time">00:00</div>
+        <input type="range" min="1" max="100" value="0" class="seek_slider" />
+        <div class="total-duration">00:00</div>
+      </div>
+
+      <!-- Volume -->
+      <div class="slider_container">
+        <i class="fa fa-volume-down"></i>
+        <input type="range" min="1" max="100" value="99" class="volume_slider" />
+        <i class="fa fa-volume-up"></i>
+      </div>
+
+      <!-- Controls -->
+      <div class="buttons">
+        <div class="random-track"><i class="fas fa-random fa-2x" title="random"></i></div>
+        <div class="prev-track"><i class="fa fa-step-backward fa-2x"></i></div>
+        <div class="playpause-track" id="playpause-btn"><i class="fa fa-play-circle fa-5x"></i></div>
+        <div class="next-track"><i class="fa fa-step-forward fa-2x"></i></div>
+        <div class="repeat-track"><i class="fa fa-repeat fa-2x" title="repeat"></i></div>
+      </div>
+
+      <div id="wave">
+        <span class="stroke"></span><span class="stroke"></span><span class="stroke"></span>
+        <span class="stroke"></span><span class="stroke"></span><span class="stroke"></span><span class="stroke"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase login (modular SDK) -->
+  <script type="module" src="js/auth/login.js"></script>
+
+  <!-- Music Player Logic -->
+  <script type="module" src="js/main.js"></script>
+
+  <!-- Burger Toggle -->
+  <script>
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileDropdown = document.getElementById('mobile-dropdown');
+    mobileToggle.addEventListener('click', () => {
+      mobileDropdown.classList.toggle('show');
+    });
+  </script>
+</body>
+</html>

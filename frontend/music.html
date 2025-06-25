@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Songs | FNB Studio</title>
+  <link rel="stylesheet" href="assets/css/music.css" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    body {
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    ul#music-list {
+      list-style: none;
+      padding: 0;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    li.song-item {
+      background: #1c1c1c;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    li.song-item:hover {
+      background: #333;
+    }
+
+    li.song-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+      vertical-align: middle;
+      margin-right: 15px;
+    }
+
+    .song-info {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .song-info h3, .song-info p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎶 All Songs</h1>
+  <ul id="music-list"></ul>
+
+  <script type="module">
+    async function fetchSongs() {
+      try {
+        const res = await fetch("http://192.168.5.6:5000/songs");
+        const songs = await res.json();
+
+        const list = document.getElementById("music-list");
+        list.innerHTML = "";
+
+        songs.forEach(song => {
+          const li = document.createElement("li");
+          li.className = "song-item";
+          li.innerHTML = `
+            <img src="${song.cover || 'assets/images/default.jpg'}" alt="cover">
+            <div class="song-info">
+              <h3>${song.title}</h3>
+              <p>${song.artist}</p>
+            </div>
+          `;
+
+          li.addEventListener("click", () => {
+            const query = new URLSearchParams({
+              title: song.title,
+              artist: song.artist,
+              url: song.url,
+              cover: song.cover
+            }).toString();
+            window.location.href = `index.html?${query}`;
+          });
+
+          list.appendChild(li);
+        });
+      } catch (err) {
+        console.error("Failed to load songs:", err);
+        document.getElementById("music-list").innerHTML =
+          `<li style="color:red;">⚠️ Failed to load songs.</li>`;
+      }
+    }
+
+    fetchSongs();
+  </script>
+</body>
+</html>
