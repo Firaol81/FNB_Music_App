@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload Song | FNB Studio</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/upload.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+  
+
+  <!-- Auth Bar -->
+  <div id="auth-bar">
+    <div id="auth-left">
+      <button id="google-login-btn" class="auth-button">
+        <img src="assets/logo/google-icon.png" alt="Google" style="height:20px; margin-right:8px;"> Sign in with Google
+      </button>
+
+      <div id="settings-menu" class="dropdown" style="display: none;">
+        <button class="auth-button" id="settings-btn">⚙️ Settings ▾</button>
+        <div class="dropdown-content" id="settings-dropdown">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="upload.html">Upload</a>
+          <a href="#" id="logout-btn">Log Out</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="user-info" style="display: none;">
+      <img id="user-photo" src="" alt="User Photo" style="height: 32px; width: 32px; border-radius: 50%;" />
+      <span id="user-name" style="font-weight: 500;"></span>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav-bar">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="music.html">Music</a></li>
+    </ul>
+  </nav>
+
+  <!-- Upload Section -->
+  <div class="upload-container">
+    <h1>Upload Your Song</h1>
+    <form id="upload-form" enctype="multipart/form-data">
+      <input type="text" id="title" name="title" placeholder="Song Title" required />
+      <input type="text" id="artist" name="artist" placeholder="Artist Name" required />
+
+      <label for="audio">Choose MP3 File</label>
+      <input type="file" id="audio" name="audio" accept="audio/mp3,audio/mpeg" required />
+
+      <label for="cover">Choose Cover Photo</label>
+      <input type="file" id="cover" name="cover" accept="image/*" />
+
+      <button type="submit">Upload Song</button>
+    </form>
+
+    <p id="status-text"></p>
+    <audio id="preview-audio" controls style="display: none;"></audio>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+  <!-- Your Firebase Init (must be loaded before auth/upload logic) -->
+  <script type="module" src="js/firebase-init.js"></script>
+
+  <!-- Auth & Upload Logic -->
+  <script type="module" src="js/auth/login.js"></script>
+  <script type="module" src="js/upload.js"></script>
+
+</body>
+</html>

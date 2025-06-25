@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account | FNB Studio</title>
+  <link rel="stylesheet" href="assets/css/register.css" />
+</head>
+<body>
+  <div class="register-container">
+    <h2>Create Your Account</h2>
+
+    <form id="register-form">
+      <input type="text" id="first-name" placeholder="First Name" required />
+      <input type="text" id="last-name" placeholder="Last Name" required />
+      <input type="date" id="birthday" placeholder="Birthday" required />
+
+      <select id="method-selector">
+        <option value="email">Sign up with Email</option>
+        <option value="phone">Sign up with Phone Number</option>
+      </select>
+
+      <div id="email-section">
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="password" id="password" placeholder="Password" required />
+      </div>
+
+      <div id="phone-section" style="display: none;">
+        <select id="country-code">
+          <option value="+1">🇺🇸 United States (+1)</option>
+          <option value="+251">🇪🇹 Ethiopia (+251)</option>
+          <!-- Add more countries if needed -->
+        </select>
+        <input type="tel" id="phone-number" placeholder="Phone Number" />
+        <div id="recaptcha-container"></div>
+      </div>
+
+      <button type="submit">Create Account</button>
+    </form>
+
+    <div id="confirmation-section" style="display: none;">
+      <p>Enter the confirmation code sent to your phone:</p>
+      <input type="text" id="verification-code" placeholder="6-digit code" />
+      <button id="verify-code-btn">Verify Code</button>
+    </div>
+
+    <p class="login-link">Already have an account? <a href="login.html">Log in</a></p>
+  </div>
+
+  <script type="module" src="js/auth/create-account.js"></script>
+</body>
+</html

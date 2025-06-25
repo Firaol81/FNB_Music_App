@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FNB Dashboard</title>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+
+  <!-- Top Bar: Follower Info + Search -->
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; color: white;">
+    <div style="font-size: 20px; font-weight: bold;">
+      <span id="follower-count-label" style="cursor:pointer;">Followers: <span id="follower-count">0</span></span> |
+      <span id="following-count-label" style="cursor:pointer;">Following: <span id="following-count">0</span></span>
+    </div>
+    <input type="text" id="user-search" placeholder="Search users..." style="padding: 8px 12px; border-radius: 6px; font-size: 16px;">
+  </div>
+
+  <!-- Auth Bar -->
+  <div id="auth-bar">
+    <div id="auth-left">
+      <button id="google-login-btn" class="auth-button">
+        <img src="assets/logo/google-icon.png" alt="Google" style="height:20px; vertical-align:middle; margin-right:8px;">
+        Sign in with Google
+      </button>
+
+      <div id="settings-menu" class="dropdown" style="display: none;">
+        <button class="auth-button" id="settings-btn">⚙️ Settings ▾</button>
+        <div class="dropdown-content" id="settings-dropdown">
+          <a href="dashboard.html" id="dashboard-link">Dashboard</a>
+          <a href="#" id="account-info-link">Account Info</a>
+          <a href="#" id="logout-btn">Log Out</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="user-info" style="display: none;">
+      <img id="user-photo" src="" alt="User Photo" style="height: 32px; width: 32px; border-radius: 50%;">
+      <span id="user-name" style="font-weight: 500; font-size: 18px; margin-left: 10px;"></span>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+ <nav class="nav-bar">
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="upload.html">Upload</a></li>
+    <li><a href="music.html">All Songs</a></li>
+    <li><a id="my-songs-link" href="#">My Songs</a></li> <!-- 🔥 NEW -->
+  </ul>
+</nav>
+
+
+  <!-- Dashboard Section -->
+  <section class="dashboard">
+    <h1 style="color: white; text-align: center;">🎷 Dashboard</h1>
+    <p style="color: #ccc; text-align: center;">Click any song to play it in the app.</p>
+
+    <!-- Song List -->
+    <ul id="song-list" style="list-style: none; padding: 0; max-width: 600px; margin: auto;"></ul>
+  </section>
+
+  <!-- Popup Modal for Follower/Following -->
+  <div id="popup-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000aa; justify-content:center; align-items:center; z-index:999;">
+    <div style="background:white; color:black; padding:20px; border-radius:10px; max-width:400px; width:90%;">
+      <h3 id="popup-title">People</h3>
+      <ul id="popup-list" style="padding: 0; list-style: none;"></ul>
+      <button onclick="document.getElementById('popup-modal').style.display='none'" style="margin-top: 10px;">Close</button>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script type="module" src="js/auth/login.js"></script>
+  <script type="module" src="js/dashboard.js"></script>
+  <script type="module" src="js/nav-my-songs.js"></script>
+
+</body>
+</html>
