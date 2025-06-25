@@ -1,54 +1,27 @@
 # 🎧 FNB Music App
 
-![Live Demo](https://img.shields.io/badge/Live%20Demo-Coming%20Soon-blue)
-![Built with](https://img.shields.io/badge/Built%20with-Node.js%2C%20Firebase%2C%20MongoDB-green)
-![Author](https://img.shields.io/badge/Built%20by-Firaol%20Nebi%20Baneta-red)
+This is my full-stack music platform where users can upload songs, play music, sign in with Firebase, and follow each other. It’s fully working **when run locally**, with clean frontend and backend code.
 
-
-
-
-## ⚙️ Getting Started: Run Backend First (MongoDB + Node.js)
-
-Before using the frontend, you must start the backend server to connect to MongoDB and handle music uploads and playback.
+> ⚠️ **Live Demo Notice:**  
+> Some features like login and uploading won’t work online because they depend on the backend. But everything works perfectly when you run it on your computer.
 
 ---
 
-### 🔌 Step 1: Start the Backend Server
+## 🚀 Features
 
-1. Make sure you have **Node.js** and **MongoDB URI** (from MongoDB Atlas or local)
-2. Open the project folder in **Visual Studio Code**
-3. Open the terminal (**Terminal → New Terminal**)
-4. Create a `.env` file at the root of the project and add your MongoDB connection string:
+- 🔐 Google Sign-In with Firebase
+- ⬆️ Upload MP3 songs with cover images and artist name
+- 🎵 Play, pause, seek songs with a responsive music player
+- 👥 View your own songs, follow others, and see their uploads
+- 🔍 Search by title or artist
+- 📱 Mobile and desktop responsive layout
 
-The server should say something like:
-✅ Server running at http://localhost:5000
-✅ Connected to MongoDB
+---
 
+## 🛠️ How to Run This Project Locally
 
+### 1️⃣ Clone the Project
 
-
-🧠 What the Backend Does
-Connects to MongoDB using Mongoose
-
-Handles song uploads and stores them in a local folder or database
-
-Provides API endpoints like:
-
-GET /songs → Get all songs
-
-POST /upload → Upload a song (with cover, title, artist, and user info)
-
-✅ Next Step: Open the Frontend
-After starting the backend, open index.html or any other frontend page in your browser to:
-
-Sign in with Firebase
-
-Upload songs
-
-Play music
-
-View your profile and song list
-
-Let me know if you want me to include a sample `.env` file, or show the actual `node.server.js` content with MongoDB connected.
-
-
+```bash
+git clone https://github.com/Firaol81/FNB_Music_App.git
+cd FNB_Music_App
