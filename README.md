@@ -1,3 +1,12 @@
+# 🎧 FNB Music App
+
+![Live Demo](https://img.shields.io/badge/Live%20Demo-Coming%20Soon-blue)
+![Built with](https://img.shields.io/badge/Built%20with-Node.js%2C%20Firebase%2C%20MongoDB-green)
+![Author](https://img.shields.io/badge/Built%20by-Firaol%20Nebi%20Baneta-red)
+
+
+
+
 ## ⚙️ Getting Started: Run Backend First (MongoDB + Node.js)
 
 Before using the frontend, you must start the backend server to connect to MongoDB and handle music uploads and playback.
